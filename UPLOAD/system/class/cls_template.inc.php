@@ -28,6 +28,9 @@ class TPL
 	{
 		if (!is_object(self::$view))
 		{
+			/*By Zhong：self是指向类本身，也就是self是不指向任何已经实例化的对象，一般self使用来指向类中的静态变量。
+			假如我们使用类里面静态（一般用关键字static）的成员，我们也必须使用self来调用。
+			还要注意使用self来调用静态变量必须使用:: (域运算符号)*/
 			self::$template_path = realpath(ROOT_PATH . 'views/');
 
 			self::$view = new Savant3(
@@ -120,7 +123,10 @@ class TPL
 				}
 			}
 
-			if (get_setting('url_rewrite_enable') == 'Y' AND $template_dirs[0] != 'admin')			{				$output = preg_replace('/(href|action)=([\"|\'])(?!mailto)(?!file)(?!ftp)(?!http)(?!javascript)(?![\/|\#])(?!\.\/)([^\"\']+)([\"|\'])/is', '\1=\2' . base_url() . '/' . '\3\4', $output);			}
+			if (get_setting('url_rewrite_enable') == 'Y' AND $template_dirs[0] != 'admin')
+			{
+				$output = preg_replace('/(href|action)=([\"|\'])(?!mailto)(?!file)(?!ftp)(?!http)(?!javascript)(?![\/|\#])(?!\.\/)([^\"\']+)([\"|\'])/is', '\1=\2' . base_url() . '/' . '\3\4', $output);
+			}
 
 			//$output = preg_replace("/([a-zA-Z0-9]+_?[a-zA-Z0-9]+)-__|(__[a-zA-Z0-9]+_?[a-zA-Z0-9]+)-$/i", '', $output);
 			

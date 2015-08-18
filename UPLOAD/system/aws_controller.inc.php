@@ -208,7 +208,7 @@ class AWS_CONTROLLER
 
 			return $this;
 		}
-		/*对HTML进行字符串编码*/
+		/*By Zhong：对HTML进行字符串编码*/
 		$name = htmlspecialchars_decode($name);
 
 		$crumb_template = $this->crumb;
