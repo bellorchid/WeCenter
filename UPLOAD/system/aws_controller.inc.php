@@ -198,6 +198,7 @@ class AWS_CONTROLLER
 	 */
 	public function crumb($name, $url = null)
 	{
+		/*By Zhong：如果用户的name是个数组，此步会将键值对数组拆解成一个个的字符串，以便进行下一步操作*/
 		if (is_array($name))
 		{
 			foreach ($name as $key => $value)
@@ -207,7 +208,7 @@ class AWS_CONTROLLER
 
 			return $this;
 		}
-
+		/*对HTML进行字符串编码*/
 		$name = htmlspecialchars_decode($name);
 
 		$crumb_template = $this->crumb;
